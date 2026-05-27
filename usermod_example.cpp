@@ -12,9 +12,9 @@
  *   - the Usermod Settings page via appendConfigData()
  *
  * To create your own usermod:
- *   1. Fork https://github.com/wled/wled-usermod-example on GitHub.
+ *   1. Click "Use this template" on https://github.com/wled/wled-usermod-example to create your own repo.
  *   2. Rename the class and file to something descriptive.
- *   3. Reference your fork in platformio_override.ini via custom_usermods.
+ *   3. Reference your new repo in platformio_override.ini via custom_usermods.
  *
  * REGISTER_USERMOD() at the bottom self-registers the instance — no other
  * file edits are needed.

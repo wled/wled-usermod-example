@@ -1,12 +1,12 @@
 # WLED usermod example
 
-This repository is a template for building your own [WLED](https://github.com/wled/WLED) usermod as a standalone project. Fork it, add your code, and reference it from a WLED build — no changes to the WLED source tree needed.
+This repository is a [GitHub template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for building your own [WLED](https://github.com/wled/WLED) usermod as a standalone project. Create a new repository from it, add your code, link it to WLED, and make the world a brighter place!
 
 ## Getting started
 
-### 1. Fork and rename
+### 1. Create from template
 
-Fork this repository on GitHub, then:
+Click **Use this template** → **Create a new repository** on GitHub. You get a clean copy to start building your project from. Then:
 
 - Rename `usermod_example.cpp` to something descriptive (e.g. `my_sensor.cpp`)
 - Rename the class inside from `MyExampleUsermod` to match
@@ -14,7 +14,7 @@ Fork this repository on GitHub, then:
 
 ### 2. Wire it into your WLED build
 
-Clone your fork alongside your WLED checkout:
+Clone your new repository alongside your WLED checkout:
 
 ```
 ~/projects/

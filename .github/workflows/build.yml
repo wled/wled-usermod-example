@@ -17,12 +17,14 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: usermod
+          persist-credentials: false
 
       - name: Checkout WLED
         uses: actions/checkout@v6
         with:
           repository: wled/WLED
           path: WLED
+          persist-credentials: false
 
       - name: Cache PlatformIO packages
         uses: actions/cache@v5

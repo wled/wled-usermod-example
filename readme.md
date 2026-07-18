@@ -68,4 +68,6 @@ custom_usermods =
 
 `REGISTER_USERMOD(instance)` at the bottom of the file handles self-registration — there is no `usermods_list.cpp` to edit.
 
+**`cdata.json`** — Optional web UI manifest. If your usermod serves its own page (this template compresses `data/example.htm` into a generated `example_ui.h`, which `usermod_example.cpp` includes and serves at `/example`), `cdata.json` tells the build system how to build that header. See [Bundling web UI assets](https://kno.wled.ge/advanced/custom-features/#bundling-web-ui-assets) for the manifest format.
+
 For full documentation see the [WLED Custom Features](https://kno.wled.ge/advanced/custom-features/) page.

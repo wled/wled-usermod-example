@@ -1,0 +1,16 @@
+{
+  "header": [
+    {
+      "srcDir": "data",
+      "output": "example_ui.h",
+      "specs": [
+        {
+          "file": "example.htm",
+          "name": "PAGE_example",
+          "method": "gzip",
+          "filter": "html-minify"
+        }
+      ]
+    }
+  ]
+}

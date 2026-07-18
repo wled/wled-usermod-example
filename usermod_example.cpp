@@ -1,5 +1,10 @@
 #include "wled.h"
 
+// Web UI page for this usermod.  Generated at build time by tools/cdata.js from
+// data/example.htm, as described by this usermod's cdata.json manifest; it
+// defines PAGE_example[] (gzip-compressed) and PAGE_example_length.
+#include "example_ui.h"
+
 /*
  * Usermods allow you to add own functionality to WLED without touching core source files.
  * See the WLED docs: https://kno.wled.ge/advanced/custom-features/
@@ -78,6 +83,27 @@ class MyExampleUsermod : public Usermod {
     void setup() override {
       // do your set-up here
       //Serial.println("Hello from my usermod!");
+
+      // Register this usermod's web routes.  setup() runs before initServer(),
+      // but the global AsyncWebServer object already exists, so handlers added
+      // here are matched ahead of WLED's catch-all 404.
+      //
+      // "/example" serves the generated page.  handleStaticContent() (exported
+      // by WLED for exactly this purpose) sends the gzip-compressed PROGMEM
+      // array with the right Content-Encoding/ETag headers.
+      server.on(F("/example"), HTTP_GET, [](AsyncWebServerRequest *request) {
+        handleStaticContent(request, "", 200, FPSTR(CONTENT_TYPE_HTML), PAGE_example, PAGE_example_length);
+      });
+
+      // "/example/data" is a live JSON endpoint the page fetches, so the test
+      // exercises both a generated static page and a dynamic usermod route.
+      server.on(F("/example/data"), HTTP_GET, [this](AsyncWebServerRequest *request) {
+        AsyncResponseStream *response = request->beginResponseStream("application/json");
+        response->printf("{\"enabled\":%s,\"greatValue\":%u,\"uptime\":%lu}",
+                         enabled ? "true" : "false", greatValue, (unsigned long)(millis() / 1000));
+        request->send(response);
+      });
+
       initDone = true;
     }
 

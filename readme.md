@@ -19,7 +19,7 @@ Clone your new repository alongside your WLED checkout:
 ```
 ~/projects/
   WLED/
-  my-wled-usermod/
+  wled-usermod-my_sensor/
     library.json
     my_sensor.cpp
 ```
@@ -31,20 +31,21 @@ In `platformio_override.ini` inside the WLED folder, add a `symlink://` referenc
 extends = env:esp32dev
 custom_usermods =
   ${env:esp32dev.custom_usermods}
-  symlink:///home/you/projects/my-wled-usermod
+  symlink:///home/you/projects/wled-usermod-my_sensor
 ```
 
-Both projects are now open in the same VS Code session. PlatformIO picks up your changes on each build.
+Add both projects to the same VS Code workspace if you want to edit them together. PlatformIO picks up your changes on each build.
 
 ### 3. Share it
 
-Once ready, others can reference your usermod directly by URL — no local clone needed:
+Tag your working version and add your usermod to the [Community Usermods page](https://kno.wled.ge/advanced/community-usermods/) by sending a PR to [WLED-Docs](https://github.com/wled/WLED-Docs).  Other developers can add your usermod to their builds by adding your repository to their build's `custom_usermods`!
 
 ```ini
 custom_usermods =
   ${env:esp32dev.custom_usermods}
-  symlink://github.com/you/my-wled-usermod.git#main
+  https://github.com/you/wled-usermod-my_sensor.git#v1.0.0
 ```
+
 
 ## What's in this repo
 

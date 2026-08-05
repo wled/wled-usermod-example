@@ -1,0 +1,45 @@
+name: Build against WLED
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  schedule:
+    - cron: '0 4 * * *'   # nightly at 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout usermod
+        uses: actions/checkout@v6
+        with:
+          path: usermod
+          persist-credentials: false
+
+      - name: Checkout WLED
+        uses: actions/checkout@v6
+        with:
+          repository: wled/WLED
+          path: WLED
+          persist-credentials: false
+
+      - name: Cache PlatformIO packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.platformio
+          key: pio-esp32-${{ hashFiles('WLED/platformio.ini') }}
+          restore-keys: pio-esp32-
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Configure usermod build
+        run: |
+          printf '[env:ci]\nextends = env:esp32dev\ncustom_usermods = file://${{ github.workspace }}/usermod\n' \
+            >> WLED/platformio_override.ini
+
+      - name: Build
+        run: platformio run -d WLED -e ci

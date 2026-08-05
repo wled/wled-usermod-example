@@ -34,11 +34,11 @@ custom_usermods =
   symlink:///home/you/projects/wled-usermod-my_sensor
 ```
 
-Both projects are now open in the same VS Code session. PlatformIO picks up your changes on each build.
+Add both projects to the same VS Code workspace if you want to edit them together. PlatformIO picks up your changes on each build.
 
 ### 3. Share it
 
-Add your usermod to the [Community Usermods page](https://kno.wled.ge/advanced/community-usermods/) by sending a PR to [WLED-Docs](https://github.com/wled/WLED-Docs).  Other developers can add your usermod to their builds by adding your repository to their build's `custom_usermods`!
+Tag your working version and add your usermod to the [Community Usermods page](https://kno.wled.ge/advanced/community-usermods/) by sending a PR to [WLED-Docs](https://github.com/wled/WLED-Docs).  Other developers can add your usermod to their builds by adding your repository to their build's `custom_usermods`!
 
 ```ini
 custom_usermods =
